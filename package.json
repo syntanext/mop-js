@@ -1,5 +1,5 @@
 {
-  "name": "@bringittocode/fastify-mop",
+  "name": "@bringittocode/mop-js",
   "version": "1.0.3",
   "description": "This is a mysql library to create long live connection between your application and mysql, this is not mysql pool.",
   "main": "index.js",
@@ -33,7 +33,7 @@
   ],
   "license": "MIT",
   "publishConfig": {
-    "@bringittocode:registry": "https://npm.pkg.github.com"
+    "@bringittocode:registry": "https://registry.npmjs.org"
   },
   "bugs": {
     "url": "https://github.com/Bringittocode/mop-js/issues"
