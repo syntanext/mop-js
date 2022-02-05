@@ -1,6 +1,6 @@
 {
   "name": "@bringittocode/mop-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is a mysql library to create long live connection between your application and mysql, this is not mysql pool.",
   "main": "index.js",
   "type": "module",
