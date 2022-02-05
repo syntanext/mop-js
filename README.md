@@ -42,11 +42,6 @@ mop.register({
 > WAIT_TIME => how many miliseconds to wait before reconnecting if there is any disconnection.. DEFAULT 5 seconds
 
 After registering you can now import mysql instance in all of your application
-```js
-
-import {DB, DB_INFO} from "@bringittocode/mop-js";
-
-```
 
 what you have to do is to focus on your query as you would if no package is used
 
@@ -54,7 +49,7 @@ learn more => https://www.npmjs.com/package/mysql;
 
 ```js
     const query = "SELECT * FROM your_table where ?";
-    DB.query(query, ["user"], function (err, result) {
+    mop.DB.query(query, ["user"], function (err, result) {
         try {
             if (err) throw err;
             //manage result
@@ -73,19 +68,19 @@ event must be inside fastify ready function to avoid error
 ```js
     // listen for connection and reconnection
     // status => boolean
-    DB_INFO.on("connect",(status)=>{
+    mop.DB_INFO.on("connect",(status)=>{
         console.log('database connected');
     });
 
     // listen for reconnection error
     // code => error code
     // message => error message
-    DB_INFO.on("reconnect_error", (code,message) => {
+    mop.DB_INFO.on("reconnect_error", (code,message) => {
         console.log(code, message);
     });
 
     // listen for disconnection ...this can be for many reason
-    DB_INFO.on("disconnect", (code) => {
+    mop.DB_INFO.on("disconnect", (code) => {
         console.log(code);
     });
 ```
