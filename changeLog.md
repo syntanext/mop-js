@@ -1,3 +1,7 @@
+VERSION 1.0.5::::
+    * stable version.
+    * bugs fixed.
+
 VERSION 1.0.4::::
     * Fixed installation errors
 

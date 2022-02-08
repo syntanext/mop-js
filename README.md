@@ -64,7 +64,6 @@ learn more => https://www.npmjs.com/package/mysql;
 
 ## Event
 
-event must be inside fastify ready function to avoid error
 ```js
     // listen for connection and reconnection
     // status => boolean

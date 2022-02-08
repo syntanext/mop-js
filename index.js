@@ -60,11 +60,11 @@ class mop{
     
                 });
     
-                this.DB = new_connection;
+                mop.DB = new_connection;
     
                 emitter.emit("connect", true)
     
-                this.DB.on('error', function (error) {
+                mop.DB.on('error', function (error) {
                     const code = error.code;
                     emitter.emit("disconnect", code)
                     mop.DB.destroy()
@@ -72,7 +72,7 @@ class mop{
                 });
             } catch (e) {
                 emitter.emit("connect", true)
-                this.DB.on('error', function (error) {
+                mop.DB.on('error', function (error) {
                     const code = error.code;
                     emitter.emit("disconnect", code);
                     mop.DB.destroy();
