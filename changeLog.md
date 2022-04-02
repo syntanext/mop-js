@@ -1,3 +1,6 @@
+VERSION 1.0.6::::
+    * Support for mysql2
+
 VERSION 1.0.5::::
     * stable version.
     * bugs fixed.

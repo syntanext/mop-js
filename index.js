@@ -1,7 +1,7 @@
 "use strict"
 
-import events from "events"
-import mysql from "mysql";
+import events from "events";
+import mysql from "mysql"
 
 /**
  * connect to MYSQL Database..
@@ -22,12 +22,13 @@ class mop{
                 database: ''
             }
         } = options;
-        const {
-            WAIT_TIME: WAIT_TIME = 5000
-        } = options;
+        
+        const {WAIT_TIME: WAIT_TIME = 5000} = options;
+
+        const {MODULE: MODULE = mysql} = options;
 
         // test connection 
-        const connection = mysql.createConnection(DATABASE_INFO);
+        const connection = MODULE.createConnection(DATABASE_INFO);
 
         const emitter = new events.EventEmitter();
         // store test connection
@@ -41,7 +42,7 @@ class mop{
     
                     if (connection.state === "disconnected") {
     
-                        const connection = mysql.createConnection(DATABASE_INFO);
+                        const connection = MODULE.createConnection(DATABASE_INFO);
     
                         connection.connect(function (error) {
                             if (error) {
