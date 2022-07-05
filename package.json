@@ -1,6 +1,6 @@
 {
   "name": "@bringittocode/mop-js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "This is a mysql library to create long live connection between your application and mysql, this is not mysql pool.",
   "main": "index.js",
   "type": "module",
@@ -8,7 +8,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "mysql": "^2.18.1",
     "mysql2": "^2.3.3"
   },
   "repository": {
@@ -17,7 +16,7 @@
   },
   "keywords": [
     "mysql",
-    "nodejs",
+    "mysql2",
     "nodejs",
     "pool"
   ],

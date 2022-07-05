@@ -1,7 +1,6 @@
 "use strict"
 
 import events from "events";
-import mysql from "mysql"
 
 /**
  * connect to MYSQL Database..
@@ -13,7 +12,7 @@ class mop{
     static DB = '';
     static DB_INFO = '';
 
-    static register (options) {
+    static async register (options) {
         const {
             DATABASE_INFO: DATABASE_INFO = {
                 host: 'localhost',
@@ -25,7 +24,11 @@ class mop{
         
         const {WAIT_TIME: WAIT_TIME = 5000} = options;
 
-        const {MODULE: MODULE = mysql} = options;
+        const {MODULE: MODULE} = options;
+
+        if(MODULE === undefined){
+            MODULE = await import("mysql2")
+        }
 
         // test connection 
         const connection = MODULE.createConnection(DATABASE_INFO);
@@ -40,11 +43,30 @@ class mop{
                 // new connection
                 const new_connection = await new Promise(async (resolve, reject) => {
     
-                    if (connection.state === "disconnected") {
-    
+                    if(connection.state){
+                        if (connection.state === "disconnected") {
+        
+                            const connection = MODULE.createConnection(DATABASE_INFO);
+        
+                            connection.connect(function (error) {
+                                if (error) {
+                                    const code = error.code;
+                                    const message = error.message;
+                                    emitter.emit("reconnect_error", code, message)
+                                    setTimeout(CONNECT, WAIT_TIME);
+                                } else {
+                                    resolve(connection);
+                                }
+        
+                            });
+                        } else {
+                            reject('already connected');
+                        }
+                    }
+                    else{
                         const connection = MODULE.createConnection(DATABASE_INFO);
-    
-                        connection.connect(function (error) {
+
+                        connection.connect(function (error){
                             if (error) {
                                 const code = error.code;
                                 const message = error.message;
@@ -53,10 +75,7 @@ class mop{
                             } else {
                                 resolve(connection);
                             }
-    
-                        });
-                    } else {
-                        reject('already connected');
+                        })
                     }
     
                 });

@@ -15,6 +15,13 @@ you still have the complete features of mysql in nodejs except for mysql pool
 * You still have all the method of any MYSQL module you use except for pool.
 * You have an event to listen on if connection failed or successful
 
+## Advantages
+
+* Mysql concurrent connections remain the same
+* No down time
+* No slow query because connection is alive so no need of creating connection again and again
+* Traffic on mysql database reduces because is only getting connection once.
+
 ## USAGE
 
 ### import the module
@@ -25,6 +32,11 @@ import mysql from "mysql";
 
 //OR
 const mop = require('@bringittocode/mop-js');
+// Import any mysql module you wish to use
+const mysql2 = require("mysql2");
+
+//OR
+const {default: mop} = import("@bringittocode/mop-js") //dynamic import
 // Import any mysql module you wish to use
 const mysql2 = require("mysql2");
 ```
